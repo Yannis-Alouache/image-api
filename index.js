@@ -31,6 +31,7 @@ app.get('/images', (req, res) => {
     const directoryPath = path.join(__dirname, 'uploads');
     fs.readdir(directoryPath, function (err, files) {
         if (err) {
+            console.log(err);
             return res.status(500).send({
                 message: "Impossible de scanner les fichiers!",
                 error: err

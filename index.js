@@ -9,13 +9,15 @@ const port = 3002;
 
 app.use(cors());
 
+
+
 // Configuration de Multer
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, 'uploads/');
     },
     filename: function(req, file, cb) {
-        cb(null, file.originalname.replace(/ /g,"_") + '-' + Date.now() + path.extname(file.originalname));
+        cb(null, path.parse(file.originalname).name.replace(/ /g,"_") + '-' + Date.now() + path.extname(file.originalname));
     }
 });
 

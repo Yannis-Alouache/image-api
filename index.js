@@ -31,6 +31,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 });
 
 app.get('/images', (req, res) => {
+    console.log('test');
     const directoryPath = path.join(__dirname, 'uploads');
     fs.readdir(directoryPath, function (err, files) {
         if (err) {

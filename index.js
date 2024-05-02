@@ -46,6 +46,7 @@ app.get('/images', (req, res) => {
         // Filtrer pour ne renvoyer que les fichiers images
         let fileInfos = files.filter(file => /\.(jpg|jpeg|png|gif)$/i.test(file)).map(file => {
             return {
+                name: file,
                 url: `http://${req.headers.host}/images/${file}`
             };
         });

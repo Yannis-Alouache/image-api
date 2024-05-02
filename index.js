@@ -34,7 +34,6 @@ app.get('/', (req, res) => {
 })
 
 app.get('/images', (req, res) => {
-    console.log('test');
     const directoryPath = path.join(__dirname, 'uploads');
     fs.readdir(directoryPath, function (err, files) {
         if (err) {
@@ -47,7 +46,6 @@ app.get('/images', (req, res) => {
         // Filtrer pour ne renvoyer que les fichiers images
         let fileInfos = files.filter(file => /\.(jpg|jpeg|png|gif)$/i.test(file)).map(file => {
             return {
-                name: file,
                 url: `http://${req.headers.host}/images/${file}`
             };
         });

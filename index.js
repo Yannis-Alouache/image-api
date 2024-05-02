@@ -30,6 +30,10 @@ app.post('/upload', upload.single('image'), (req, res) => {
     });
 });
 
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+})
+
 app.get('/images', (req, res) => {
     console.log('test');
     const directoryPath = path.join(__dirname, 'uploads');

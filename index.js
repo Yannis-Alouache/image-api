@@ -6,6 +6,10 @@ const fs = require('fs');
 const app = express();
 const port = 3002;
 
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+})
+
 // Configuration de Multer
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {

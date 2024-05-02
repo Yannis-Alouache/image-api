@@ -41,7 +41,7 @@ app.get('/images', (req, res) => {
         if (err) {
             console.log(err);
             return res.status(500).send({
-                message: "Impossible de scanner les fichiers!",
+                message: "Impossible de scanner les fichiers !",
                 error: err
             });
         } 

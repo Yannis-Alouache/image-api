@@ -59,6 +59,34 @@ app.get('/images', (req, res) => {
 // Middleware pour servir les fichiers statiques
 app.use('/images', express.static('uploads'));
 
+app.delete('/images/:imageName', (req, res) => {
+    const imageName = req.params.imageName;
+    const imagePath = path.join(__dirname, 'uploads', imageName);
+
+    // Vérifie si le fichier existe
+    if (fs.existsSync(imagePath)) {
+        // Supprime le fichier
+        fs.unlink(imagePath, (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send({
+                    message: "Erreur lors de la suppression du fichier",
+                    error: err
+                });
+            }
+            console.log(`Fichier ${imageName} supprimé avec succès.`);
+            res.send({
+                message: `Fichier ${imageName} supprimé avec succès.`
+            });
+        });
+    } else {
+        // Le fichier n'existe pas
+        res.status(404).send({
+            message: `Le fichier ${imageName} n'existe pas.`
+        });
+    }
+});
+
 // Démarrage du serveur
 app.listen(port, () => {
     console.log(`Serveur démarré sur http://localhost:${port}`);
